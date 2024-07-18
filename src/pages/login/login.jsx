@@ -19,6 +19,7 @@ import {
   UserPlusIcon
 } from "@heroicons/react/24/solid";
 import SingIn from "./panels/SingIn";
+import SingUp from "./panels/SingUp";
 
 export function Login() {
   const [type, setType] = React.useState("login")
@@ -83,7 +84,8 @@ export function Login() {
                     },
                   }}
               >
-                <SingIn type={type}/>
+                <SingIn/>
+                <SingUp/>
               </TabsBody>
             </Tabs>
           </CardBody>
