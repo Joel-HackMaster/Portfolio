@@ -17,7 +17,7 @@ export default function SingUp({type}) {
       }= useForm()
     const [useWebcam, setUseWebcam] = useState(false);
     const [returnWebCam, setReturnWebcam] = useState(true);
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2E5amM2cGtzd2IxbTFjenhvdXRid3d4dGdxNmhmNXZmaWxyZmF0ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qW1mDX1IOBZ2EtwWF0/giphy.gif");
     const webcamRef = useRef(null);
 
     const capture = () => {
@@ -66,7 +66,7 @@ export default function SingUp({type}) {
         <Typography variant='small' color='blue-gray' className='mb-2 font-black text-start text-base'>
             Foto de Perfil
         </Typography>
-        <div className='flex flex-col justify-center items-center gap-4'>
+        <div className='w-full flex flex-col justify-center items-center gap-4'>
             {
                 useWebcam ? (
                     <>
@@ -77,14 +77,14 @@ export default function SingUp({type}) {
                                         audio={false}
                                         ref={webcamRef}
                                         screenshotFormat="image/jpeg"
-                                        className='border-2 border-gray-300 rounded-xl'
+                                        className='border-2 border-gray-300 rounded-xl h-48'
                                     />
                                 </>
                             ):(
                                 <img
                                     src={image}
                                     alt="Foto capturada"
-                                    className='border-2 border-gray-300 rounded-xl'
+                                    className='border-2 border-gray-300 object-cover rounded-xl h-48'
                                 />
                             )
                         }
@@ -93,15 +93,22 @@ export default function SingUp({type}) {
                         </Button>
                     </>
                 ):(
+                    <>
+                        <img
+                            src={image}
+                            alt="Foto capturada"
+                            className='border-2 border-gray-300 object-cover rounded-xl h-48'
+                        />
                     <Input
                         type="file"
                         accept="image/*"
                         onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
-                        className="!border-t-blue-gray-200 focus:!border-t-gray-900"
+                        className="!border-t-blue-gray-200 focus:!border-t-gray-900 border-none"
                         labelProps={{
                         className: "before:content-none after:content-none"
                         }}
                     />
+                    </>
                 )
             }
             <Button type='button' onClick={() => setUseWebcam(!useWebcam)}>
