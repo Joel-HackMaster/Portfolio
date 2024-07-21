@@ -3,15 +3,11 @@ import {
   Card,
   CardHeader,
   CardBody,
-  Input,
-  Checkbox,
   Typography,
   Tabs,
   TabsHeader,
   Tab,
   TabsBody,
-  TabPanel,
-  Button,
 } from "@material-tailwind/react";
 
 import { 
@@ -71,16 +67,19 @@ export function Login() {
                 </Tab>
               </TabsHeader>
               <TabsBody
+                  style={{
+                    height: "50vh"
+                  }}
                   className="!overflow-x-hidden !overflow-y-visible"
                   animate={{
                     initial: {
-                      x: type === "login" ? 400 : -400,
+                      x: type === "register" ? 400 : -400,
                     },
                     mount: {
                       x: 0,
                     },
                     unmount: {
-                      x: type === "login" ? 400 : -400,
+                      x: type === "register" ? 400 : -400,
                     },
                   }}
               >
