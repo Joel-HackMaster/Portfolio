@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Login } from './pages/login/login';
+import Notification from './components/ToastNotifications/Notification';
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
         <Route path='/*' element={<Navigate to="/login"/>}/>
         <Route path="/login" element={<Login />} />
       </Routes>
+      <Notification/>
     </BrowserRouter>
   )
 }

@@ -7,14 +7,18 @@ import {
     Button,
   } from "@material-tailwind/react";
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { notifyError } from '../../../components/ToastNotifications/Notification';
+
 
 export default function SingIn() {
     const {
         register,
         handleSubmit,
         formState: {errors}
-      }= useForm()
+    }= useForm()
+    const navigate = useNavigate()
+    const [not, setNotification] = React.useState(false);
 
     const onSubmit = handleSubmit(async (data) =>{
         const formData = {
@@ -31,20 +35,13 @@ export default function SingIn() {
         })
 
         if(!response.ok){
-            const errorData = await response.json()
-            toast.success("Error de Autenticacion:",{
-                position: "bottom-right",
-                style: {
-                zIndex: 100,
-                background: "#101010",
-                color: "#fff",
-                },
-            })
-            console.log(errorData.detail)
-            return;
+          setNotification(true)
+          notifyError("Correo o contraseña incorrectas")
+          navigate(`/login`)
+          return;
         }
 
-
+        
     })
 
   return (
@@ -117,5 +114,6 @@ export default function SingIn() {
                     </Typography>
                   </form>
                 </TabPanel>
+                  
   )
 }
