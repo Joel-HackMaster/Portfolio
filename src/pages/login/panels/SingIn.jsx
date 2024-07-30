@@ -18,7 +18,6 @@ export default function SingIn() {
         formState: {errors}
     }= useForm()
     const navigate = useNavigate()
-    const [not, setNotification] = React.useState(false);
 
     const onSubmit = handleSubmit(async (data) =>{
         const formData = {
@@ -33,10 +32,10 @@ export default function SingIn() {
             },
             body: JSON.stringify(formData),
         })
-
+    
         if(!response.ok){
-          setNotification(true)
-          notifyError("Correo o contraseña incorrectas")
+          const errorData = await response.json();
+          notifyError(errorData.detail)
           navigate(`/login`)
           return;
         }

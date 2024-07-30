@@ -1,26 +1,25 @@
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/ReactToastify.css'
-import '../styles/styles.css'
 import React from 'react';
+import '../../App.css'
 
 
 
 export const notifySuccess = (message) => {
     toast.success(message, { 
-        className:"toast-custom-error",
+        className:".toast-custom-success",
         position: "bottom-right",
-        style: {
-            background: "#101010",
-            color: "#FFF",
-        },
+        bodyClassName: "toast-body",
+        progressClassName: 'toast-progress',
         icon: "🚀",
     })
 }
 
 export const notifyError = (message) => {
     toast.error(message, {
-      className: 'toast-custom',
+      className: 'toast-custom-error',
       bodyClassName: "toast-body",
+      progressClassName: 'toast-progress',
       icon: "🤌",
       position: "bottom-right",
     });
